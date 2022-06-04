@@ -1,7 +1,10 @@
+import './App.css';
+import TodoApp from './components/TodoApp';
+
 function App() {
   return (
     <div>
-      Tu bedzię działa się cała magia.
+      <TodoApp />
     </div>
   );
 }
