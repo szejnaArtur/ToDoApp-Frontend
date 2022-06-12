@@ -43,7 +43,7 @@ const LoginComponent = (props) => {
 
     return (
         <>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345 }} style={{marginTop: "50px"}}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         Todo Application
