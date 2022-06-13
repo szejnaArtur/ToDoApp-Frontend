@@ -1,13 +1,9 @@
-import { Component } from "react";
-
-class FooterComponent extends Component {
-    render() {
-        return(
-            <div>
-                <hr />Footer
-            </div>
-        )
-    }
+function FooterComponent() {
+    return(
+        <footer className="footer">
+            <span className="text-muted">All Rights Reserved 2022 @Artur Szejna</span>
+        </footer>
+    )
 }
 
-export default FooterComponent;
+export default FooterComponent

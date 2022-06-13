@@ -7,9 +7,11 @@ import WelcomeComponent from './components/WelcomeComponent.jsx';
 import withParams from './components/withParams.jsx'
 import ListTodosComponent from './components/ListTodosComponent.jsx';
 import ResponsiveAppBar from './components/ResponsiveAppBar.jsx';
+import LogoutComponent from './components/LogoutComponent.jsx';
 import FooterComponent from './components/FooterComponent.jsx';
 
 import './App.css';
+import './Bootstrap.css';
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
           <Route path="/todos" element={<ListTodosComponent />} />
+          <Route path="/logout" element={<LogoutComponent />} />
           <Route path="*" element={<ErrorComponent />} />
         </Routes>
         <FooterComponent />

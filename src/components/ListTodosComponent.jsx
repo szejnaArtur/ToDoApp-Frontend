@@ -15,30 +15,34 @@ class ListTodosComponent extends Component {
     render() {
         return (
             <>
-                <h1>List Todos!</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>description</th>
-                            <th>Is Completed?</th>
-                            <th>Target Date</th>
+                <div className='container text-center'>
+                    <h1>List Todos!</h1>
+                    <div className='table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>description</th>
+                                    <th>Is Completed?</th>
+                                    <th>Target Date</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.todos.map(todo => {
-                            return (
-                                <tr key={todo.id}>
-                                    <td>{todo.id}</td>
-                                    <td>{todo.description}</td>
-                                    <td>{todo.done.toString()}</td>
-                                    <td>{todo.targetDate.toString()}</td>
                                 </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                {this.state.todos.map(todo => {
+                                    return (
+                                        <tr key={todo.id}>
+                                            <td>{todo.id}</td>
+                                            <td>{todo.description}</td>
+                                            <td>{todo.done.toString()}</td>
+                                            <td>{todo.targetDate.toString()}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </>
         )
     }

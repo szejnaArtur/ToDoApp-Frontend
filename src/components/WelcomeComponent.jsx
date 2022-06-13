@@ -5,7 +5,12 @@ class WelcomeComponent extends Component {
     render () {
         return (
             <>
-                Welcome {this.props.params.name}. You can manage your todos <Link to="/todos">here</Link>.
+                <div className='text-center'>
+                    <h1>Welcome!</h1>
+                    <div className='container'>
+                        Welcome {this.props.params.name}. You can manage your todos <Link to="/todos">here</Link>.
+                    </div>
+                </div>
             </>
         )
     }
