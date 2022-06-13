@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
+
+import AuthenticationService from './AuthenticationService.js';
 
 const LoginComponent = (props) => {
 
@@ -32,6 +33,8 @@ const LoginComponent = (props) => {
 
     const loginClicked = () => {
         if (username === 'test' && password === 'test') {
+            AuthenticationService.registerSuccessfulLogin(username, password);
+            props.click(AuthenticationService.isUserLoggedIn());
             setHasLoginFailed(false);
             setShowSuccesMessage(true);
             navigate(`/welcome/${username}`);

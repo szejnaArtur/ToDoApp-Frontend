@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import ErrorComponent from './components/ErrorComponent.jsx';
@@ -13,20 +13,37 @@ import FooterComponent from './components/FooterComponent.jsx';
 import './App.css';
 import './Bootstrap.css';
 
+import AuthenticationService from './components/AuthenticationService.js';
+import AuthenticationRoute from './components/AuthenticatedRoute.jsx';
+
 function App() {
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(AuthenticationService.isUserLoggedIn());
 
   const WelcomeComponentWithParams = withParams(WelcomeComponent);
 
   return (
     <div>
       <BrowserRouter>
-        <ResponsiveAppBar />
+        <ResponsiveAppBar isUserLoggedIn={isUserLoggedIn} click={setIsUserLoggedIn} />
         <Routes>
           <Route path="/" exact element={<LoginComponent />} />
-          <Route path="/login" element={<LoginComponent />} />
-          <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
-          <Route path="/todos" element={<ListTodosComponent />} />
-          <Route path="/logout" element={<LogoutComponent />} />
+          <Route path="/login" element={<LoginComponent click={setIsUserLoggedIn} />} />
+          <Route path="/welcome/:name" element={
+            <AuthenticationRoute>
+              <WelcomeComponentWithParams />
+            </AuthenticationRoute>
+          } />
+          <Route path="/todos" element={
+            <AuthenticationRoute>
+              <ListTodosComponent />
+            </AuthenticationRoute>
+          } />
+          <Route path="/logout" element={
+            <AuthenticationRoute>
+              <LogoutComponent />
+            </AuthenticationRoute>
+          } />
           <Route path="*" element={<ErrorComponent />} />
         </Routes>
         <FooterComponent />

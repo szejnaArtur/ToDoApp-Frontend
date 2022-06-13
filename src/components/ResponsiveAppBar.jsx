@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,9 +7,10 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
 import { Link } from 'react-router-dom';
-import { fontWeight } from '@mui/system';
 
-const ResponsiveAppBar = () => {
+import AuthenticationService from './AuthenticationService.js';
+
+const ResponsiveAppBar = (props) => {
 
   const pages = [{
       name: 'Home',
@@ -18,15 +19,6 @@ const ResponsiveAppBar = () => {
       name: 'Todos',
       url: '/todos'
   }];
-
-  const options = [{
-    name: 'Login',
-    url: '/login'
-},{
-    name: 'Logout',
-    url: '/logout'
-}];
-
 
   return (
     <AppBar position="static">
@@ -37,16 +29,16 @@ const ResponsiveAppBar = () => {
         backgroundColor: "#1976D2",
       }}>
         <Toolbar disableGutters>
-
+  
           <div style={{
             color: '#ccc',
             marginRight: '30px'
           }}>
             TODO-APP
           </div>
-
+  
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
-            {pages.map((page) => (
+            {props.isUserLoggedIn && pages.map((page) => (
               <Button
                 key={page.name}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -59,23 +51,31 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
          
-            {options.map((option) => (
-              <Button
-                key={option.name}
+         {props.isUserLoggedIn ? <Button
+                key="logout"
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to={option.url} style={{
+                <Link to="/logout" style={{
                   textDecoration: 'none',
                   color: "#fff"
-                }}>{option.name}</Link>
-              </Button>
-            ))}
-          
-
-          
+                }} 
+                onClick={() => {
+                  AuthenticationService.logout();
+                  props.click(AuthenticationService.isUserLoggedIn());
+                }}>logout</Link>
+              </Button> : <Button
+                key="login"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Link to="/login" style={{
+                  textDecoration: 'none',
+                  color: "#fff"
+                }}>Login</Link>
+              </Button>}
         </Toolbar>
       </Container>
     </AppBar>
   );
-};
+}
+
 export default ResponsiveAppBar;
