@@ -21,9 +21,8 @@ const ResponsiveAppBar = (props) => {
   }];
 
   return (
-    <AppBar position="static">
+    <AppBar>
       <Container maxWidth="xl" style={{
-        position: "absolute",
         top: 0,
         left: 0,
         backgroundColor: "#1976D2",

@@ -27,7 +27,7 @@ function App() {
       <BrowserRouter>
         <ResponsiveAppBar isUserLoggedIn={isUserLoggedIn} click={setIsUserLoggedIn} />
         <Routes>
-          <Route path="/" exact element={<LoginComponent />} />
+          <Route path="/" exact element={<LoginComponent click={setIsUserLoggedIn} />} />
           <Route path="/login" element={<LoginComponent click={setIsUserLoggedIn} />} />
           <Route path="/welcome/:name" element={
             <AuthenticationRoute>
